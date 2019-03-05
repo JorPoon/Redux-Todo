@@ -1,21 +1,29 @@
 import {ADD_TODO} from "../actions"
 
 const initialState = {
-    todos:[{
-        todo: {
-            text: "",
+    todos:[
+        {
+            value: "REDUX",
+            id: 0,
             completed: false
         }
-    }],
+    ],
 }
 
 export const reducer = (state = initialState, action) => {
     switch(action.type){
-        case ADD_TODO: {
+        case ADD_TODO: 
+            const newTodo = {
+                value: action.payload,
+                id: Date.now(),
+                completed: false
+
+            }
             return {
                 ...state,
-                // todos: [{...todo}, action.newTodo]
+                 todos: [...state.todos, newTodo]
             }
-        }
+        default:
+            return state;
     }
 }

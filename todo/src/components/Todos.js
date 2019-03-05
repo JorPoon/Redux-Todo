@@ -1,5 +1,6 @@
 import React from 'react'
-import {Connect} from 'react-redux'
+import {connect} from 'react-redux'
+import {addTodo} from '../actions'
 
 
  class Todos extends React.Component {
@@ -15,6 +16,7 @@ import {Connect} from 'react-redux'
 
     addTodo = e => {
         e.preventDefault();
+        console.log(this.props)
         this.props.addTodo(this.state.newTodo)
         this.setState({newTodo: ""})
     }
@@ -22,6 +24,13 @@ import {Connect} from 'react-redux'
     render () {
        return (
         <>
+         <div className="todo-list">
+         {this.props.todos.map(todo => {
+            return  <p key={todo.id}>
+                {todo.value}
+             </p>
+         })}
+         </div>
          <form onSubmit={this.addTodo}>
             <input 
                 type="text"
@@ -37,5 +46,8 @@ import {Connect} from 'react-redux'
     }
 }
 
+const mapStateToProps = state => ({
+    todos: state.todos
+});
 
-export default Todos;
+export default connect(mapStateToProps,{addTodo})(Todos);
