@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import Todos from './components/Todos'
 import './App.css';
 
-const store = createStore(reducer)
+
 
 class App extends Component {
   render() {

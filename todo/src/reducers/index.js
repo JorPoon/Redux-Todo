@@ -3,7 +3,7 @@ import {ADD_TODO} from "../actions"
 const initialState = {
     todos:[{
         todo: {
-            value: "",
+            text: "",
             completed: false
         }
     }],
@@ -14,7 +14,7 @@ export const reducer = (state = initialState, action) => {
         case ADD_TODO: {
             return {
                 ...state,
-                // todos: [{...todo}], action.newTodo
+                // todos: [{...todo}, action.newTodo]
             }
         }
     }
