@@ -2,7 +2,7 @@
 
 export const ADD_TODO = "ADD_TODO";
 export const TOGGLE_TODO = "TOGGLE_TODO";
-export const DELELTE_TODO = "DELETE_TODO";
+export const CLEAR_TODO = "CLEAR_TODO";
 
 export const addTodo = newTodo => {
     return {
@@ -18,9 +18,9 @@ export const toggleTodo = id => {
     }
 }
 
-export const deleleTodo = id => {
+export const clearTodo = id => {
     return {
-        type: DELELTE_TODO,
+        type: CLEAR_TODO,
         payload: id
     }
 }

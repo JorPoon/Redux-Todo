@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {addTodo, toggleTodo} from '../actions'
+import {addTodo, toggleTodo, clearTodo} from '../actions'
 import './Todos.css'
 
 
@@ -25,6 +25,10 @@ import './Todos.css'
         this.props.toggleTodo(id)
     }
 
+    clearTodo = id => {
+        this.props.clearTodo(id)
+    }
+
   
     render () {
         console.log(this.props)
@@ -34,6 +38,8 @@ import './Todos.css'
          {this.props.todos.map(todo => {
             return  <p key={todo.id} onClick={()=> this.toggleTodo(todo.id)} className={todo.completed? "text" : null}>
                 {todo.value}
+            <button onClick={()=> this.deleteTodo(todo.id)}>Delete Todo</button>
+
              </p>
          })}
          </div>
@@ -46,8 +52,9 @@ import './Todos.css'
                 onChange={this.handleChanges}
             />
             <button onClick={this.addTodo}>Add Todo</button>
-            <button>Delete Todo</button>
+            
         </form>
+        <button onClick={this.clearTodo}>Clear All COMPLETED</button>
             
         </>
         )
@@ -58,4 +65,4 @@ const mapStateToProps = state => ({
     todos: state.todos
 });
 
-export default connect(mapStateToProps,{addTodo, toggleTodo})(Todos);
+export default connect(mapStateToProps,{addTodo, toggleTodo, clearTodo})(Todos);
